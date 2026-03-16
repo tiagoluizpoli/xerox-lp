@@ -1,10 +1,8 @@
-"use client"
-
 import { SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { useState } from "react"
-import { Printer, Zap, FileText, Palette, Smartphone, User, Building2, Settings, Phone, MessageCircle, Facebook } from "lucide-react"
+import { Printer, Zap, FileText, Palette, Smartphone, User, Building2, Settings } from "lucide-react"
 
-export default function HomePage() {
+export default function App() {
   const [copied, setCopied] = useState(false)
   const pixKey = "392.809.928-05"
 
@@ -72,8 +70,6 @@ export default function HomePage() {
               />
             </div>
           </Card>
-
-
 
           {/* Additional Services Card */}
           <Card>
