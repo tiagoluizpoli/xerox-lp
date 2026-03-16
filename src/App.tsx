@@ -39,12 +39,22 @@ export default function App() {
 
         {/* Header */}
         <header className="mb-4 text-center md:mb-10">
-          <div className="mb-2 flex items-center justify-center gap-1.5 md:mb-4 md:gap-2">
-            <Printer className="h-5 w-5 text-[#3b82f6] md:h-8 md:w-8" strokeWidth={1.5} />
-            <Zap className="h-4 w-4 text-orange-500 md:h-6 md:w-6" strokeWidth={2} />
+          <div className="mb-6 flex flex-col items-center justify-center gap-4">
+            <div className="relative group">
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#3b82f6] to-orange-500 opacity-20 blur-md group-hover:opacity-40 transition-opacity duration-500"></div>
+              <img
+                src="/logo.png"
+                alt="Graziago Logo"
+                className="relative h-24 w-24 rounded-2xl object-cover shadow-2xl md:h-36 md:w-36 transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            {/* <div className="flex items-center gap-1.5 md:gap-2">
+              <Printer className="h-5 w-5 text-[#3b82f6] md:h-6 md:w-6" strokeWidth={1.5} />
+              <Zap className="h-4 w-4 text-orange-500 md:h-5 md:w-5" strokeWidth={2} />
+            </div> */}
           </div>
-          <h1 className="text-3xl font-black tracking-tight text-white md:text-6xl">
-            IMPRESSÕES
+          <h1 className="text-3xl font-black tracking-tight text-white md:text-6xl text-center">
+            GRAZIAGO<br className="md:hidden" /> IMPRESSÕES
           </h1>
           <p className="mt-1 text-xs font-semibold tracking-widest text-orange-500 md:mt-2 md:text-lg">
             RÁPIDAS & QUALIDADE
