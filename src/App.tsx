@@ -132,7 +132,7 @@ export default function App() {
 
           {/* Contact Card */}
           <Card>
-            <SectionHeader>CONTATO WHATSAPP</SectionHeader>
+            <SectionHeader>CONTATO</SectionHeader>
             <div className="mt-2 flex flex-col gap-3 md:mt-4 md:gap-4">
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
