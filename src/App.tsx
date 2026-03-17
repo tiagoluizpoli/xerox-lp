@@ -2,18 +2,24 @@ import { SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { useState } from "react"
 import { Printer, Zap, FileText, Palette, Smartphone, User, Building2, Settings } from "lucide-react"
 
+const CONTATO_TIAGO = import.meta.env.VITE_CONTATO_TIAGO
+const CONTATO_GRAZI = import.meta.env.VITE_CONTATO_GRAZI
+const PIX_KEY = import.meta.env.VITE_PIX_KEY
+const PIX_NAME = import.meta.env.VITE_PIX_NAME
+const PIX_BANK = import.meta.env.VITE_PIX_BANK
+
 export default function App() {
   const [copied, setCopied] = useState(false)
-  const pixKey = "392.809.928-05"
+
 
   const handleCopyPix = async () => {
     try {
-      await navigator.clipboard.writeText(pixKey)
+      await navigator.clipboard.writeText(PIX_KEY)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
       const textArea = document.createElement("textarea")
-      textArea.value = pixKey
+      textArea.value = PIX_KEY
       document.body.appendChild(textArea)
       textArea.select()
       document.execCommand("copy")
@@ -22,6 +28,8 @@ export default function App() {
       setTimeout(() => setCopied(false), 2000)
     }
   }
+
+
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0f1115]">
@@ -105,32 +113,39 @@ export default function App() {
               <ListItem
                 icon={<Smartphone className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Chave CPF:"
-                value={pixKey}
+                value={PIX_KEY}
                 onCopy={handleCopyPix}
                 copied={copied}
               />
               <ListItem
                 icon={<User className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
                 label="Nome:"
-                value="Tiago Luiz S. de Poli"
+                value={PIX_NAME}
               />
               <ListItem
                 icon={<Building2 className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
                 label="Banco:"
-                value="Banco Inter"
+                value={PIX_BANK}
               />
             </div>
           </Card>
 
           {/* Contact Card */}
           <Card>
-            <SectionHeader>CONTATO</SectionHeader>
+            <SectionHeader>CONTATO WHATSAPP</SectionHeader>
             <div className="mt-2 flex flex-col gap-3 md:mt-4 md:gap-4">
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
-                label="WhatsApp / Celular:"
+                label="Tiago:"
                 value="(11) 95506-6489"
                 onAction={() => window.open("https://wa.me/5511955066489", "_blank")}
+                actionLabel="Chamar"
+              />
+              <ListItem
+                icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
+                label="Graziele:"
+                value="(11) 96138-7611"
+                onAction={() => window.open("https://wa.me/5511945870362", "_blank")}
                 actionLabel="Chamar"
               />
             </div>
