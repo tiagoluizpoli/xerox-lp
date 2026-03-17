@@ -10,8 +10,24 @@ const PIX_BANK = import.meta.env.VITE_PIX_BANK
 const ENDERECO = import.meta.env.VITE_ENDERECO
 const CONDOMINIO = import.meta.env.VITE_CONDOMINIO
 const REFERENCIA = import.meta.env.VITE_REFERENCIA
-const MAPS_URL = import.meta.env.VITE_MAPS_URL
 const WHATSAPP_MESSAGE = import.meta.env.VITE_WHATSAPP_MESSAGE
+
+const handleNavigation = () => {
+  const addressQuery = encodeURIComponent(ENDERECO)
+  const isAndroid = /Android/i.test(navigator.userAgent)
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+  if (isAndroid) {
+    // Android native intent for maps picker
+    window.location.href = `geo:0,0?q=${addressQuery}`
+  } else if (isIOS) {
+    // iOS native maps
+    window.location.href = `maps://maps.apple.com/?q=${addressQuery}`
+  } else {
+    // Fallback/Desktop
+    window.open(`https://www.google.com/maps/search/?api=1&query=${addressQuery}`, "_blank")
+  }
+}
 
 export default function App() {
   const [copied, setCopied] = useState(false)
@@ -142,7 +158,7 @@ export default function App() {
                 icon={<MapPinned className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Endereço:"
                 value={ENDERECO}
-                onAction={() => window.open(MAPS_URL, "_blank")}
+                onAction={handleNavigation}
                 actionLabel="Navegar"
               />
               <ListItem
