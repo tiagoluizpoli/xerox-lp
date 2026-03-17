@@ -1,12 +1,17 @@
 import { SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { useState } from "react"
-import { Printer, Zap, FileText, Palette, Smartphone, User, Building2, Settings } from "lucide-react"
+import { Printer, Zap, FileText, Palette, Smartphone, User, Building2, Settings, MapPin, Briefcase, Sparkles, Fingerprint, Landmark, MapPinned, Building, Navigation } from "lucide-react"
 
 const CONTATO_TIAGO = import.meta.env.VITE_CONTATO_TIAGO
 const CONTATO_GRAZI = import.meta.env.VITE_CONTATO_GRAZI
 const PIX_KEY = import.meta.env.VITE_PIX_KEY
 const PIX_NAME = import.meta.env.VITE_PIX_NAME
 const PIX_BANK = import.meta.env.VITE_PIX_BANK
+const ENDERECO = import.meta.env.VITE_ENDERECO
+const CONDOMINIO = import.meta.env.VITE_CONDOMINIO
+const REFERENCIA = import.meta.env.VITE_REFERENCIA
+const MAPS_URL = import.meta.env.VITE_MAPS_URL
+const WHATSAPP_MESSAGE = import.meta.env.VITE_WHATSAPP_MESSAGE
 
 export default function App() {
   const [copied, setCopied] = useState(false)
@@ -43,7 +48,7 @@ export default function App() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-3 py-2 md:px-4 md:py-16">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col justify-start md:justify-center px-3 py-8 md:px-4 md:py-16">
 
         {/* Header */}
         <header className="mb-4 text-center md:mb-10">
@@ -65,7 +70,7 @@ export default function App() {
             GRAZIAGO<br className="md:hidden" /> IMPRESSÕES
           </h1>
           <p className="mt-1 text-xs font-semibold tracking-widest text-orange-500 md:mt-2 md:text-lg">
-            RÁPIDAS & QUALIDADE
+            RÁPIDAS + QUALIDADE
           </p>
         </header>
 
@@ -79,12 +84,12 @@ export default function App() {
               <ListItem
                 icon={<FileText className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Preto e Branco:"
-                value="R$ 1,00 (unid.)"
+                value="R$ 1,00 (folha)"
               />
               <ListItem
                 icon={<Palette className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Colorido:"
-                value="R$ 1,75 (unid.)"
+                value="R$ 1,75 (folha)"
               />
             </div>
           </Card>
@@ -94,12 +99,12 @@ export default function App() {
             <SectionHeader>SERVIÇOS ADICIONAIS</SectionHeader>
             <div className="mt-2 space-y-2 md:mt-4 md:space-y-4">
               <ServiceItem
-                icon={<User className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
+                icon={<Briefcase className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
                 title="Fábrica de Currículo (Consultoria):"
                 description="Criação e consultoria especializada para o seu currículo. Destaque suas qualificações com um design profissional."
               />
               <ServiceItem
-                icon={<Settings className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
+                icon={<Sparkles className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 title="Ajustes e encaixe de impressões:"
                 description="Ajuste técnico de conteúdo sem formato ou com dificuldade de impressão, garantindo a melhor qualidade no papel (sujeito a disponibilidade técnica)."
               />
@@ -111,7 +116,7 @@ export default function App() {
             <SectionHeader>PAGUE VIA PIX</SectionHeader>
             <div className="mt-2 space-y-1.5 md:mt-4 md:space-y-3">
               <ListItem
-                icon={<Smartphone className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
+                icon={<Fingerprint className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Chave CPF:"
                 value={PIX_KEY}
                 onCopy={handleCopyPix}
@@ -123,9 +128,32 @@ export default function App() {
                 value={PIX_NAME}
               />
               <ListItem
-                icon={<Building2 className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
+                icon={<Landmark className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
                 label="Banco:"
                 value={PIX_BANK}
+              />
+            </div>
+          </Card>
+          {/* Address Card */}
+          <Card>
+            <SectionHeader>LOCALIZAÇÃO</SectionHeader>
+            <div className="mt-2 space-y-1.5 md:mt-4 md:space-y-3">
+              <ListItem
+                icon={<MapPinned className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
+                label="Endereço:"
+                value={ENDERECO}
+                onAction={() => window.open(MAPS_URL, "_blank")}
+                actionLabel="Navegar"
+              />
+              <ListItem
+                icon={<Building className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
+                label="Condomínio:"
+                value={CONDOMINIO}
+              />
+              <ListItem
+                icon={<Navigation className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />}
+                label="Referência:"
+                value={REFERENCIA}
               />
             </div>
           </Card>
@@ -137,15 +165,15 @@ export default function App() {
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Tiago:"
-                value="(11) 95506-6489"
-                onAction={() => window.open("https://wa.me/5511955066489", "_blank")}
+                value={CONTATO_TIAGO}
+                onAction={() => window.open(`https://wa.me/55${CONTATO_TIAGO.replace(/\D/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
                 actionLabel="Chamar"
               />
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Graziele:"
-                value="(11) 96138-7611"
-                onAction={() => window.open("https://wa.me/5511945870362", "_blank")}
+                value={CONTATO_GRAZI}
+                onAction={() => window.open(`https://wa.me/55${CONTATO_GRAZI.replace(/\D/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
                 actionLabel="Chamar"
               />
             </div>
@@ -206,8 +234,10 @@ function ListItem({
   actionLabel?: string
 }) {
   return (
-    <div className="flex items-center gap-2 md:gap-3">
-      {icon}
+    <div className="flex items-start gap-2 md:gap-3">
+      <div className="mt-0.5 shrink-0">
+        {icon}
+      </div>
       <span className="text-xs font-semibold text-white md:text-base">{label}</span>
       <span className="text-xs text-white/80 md:text-base">{value}</span>
       {onCopy && (
