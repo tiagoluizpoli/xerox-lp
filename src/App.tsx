@@ -182,14 +182,14 @@ export default function App() {
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Tiago:"
                 value={CONTATO_TIAGO}
-                onAction={() => window.open(`https://wa.me/55${CONTATO_TIAGO.replace(/\D/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
+                onAction={() => window.open(`https://api.whatsapp.com/send?phone=55${CONTATO_TIAGO.replace(/\D/g, '')}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
                 actionLabel="Chamar"
               />
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Graziele:"
                 value={CONTATO_GRAZI}
-                onAction={() => window.open(`https://wa.me/55${CONTATO_GRAZI.replace(/\D/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
+                onAction={() => window.open(`https://api.whatsapp.com/send?phone=55${CONTATO_GRAZI.replace(/\D/g, '')}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
                 actionLabel="Chamar"
               />
             </div>
