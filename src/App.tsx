@@ -12,6 +12,21 @@ const CONDOMINIO = import.meta.env.VITE_CONDOMINIO
 const REFERENCIA = import.meta.env.VITE_REFERENCIA
 const WHATSAPP_MESSAGE = import.meta.env.VITE_WHATSAPP_MESSAGE
 
+const getWhatsAppLink = (phone: string) => {
+  const cleanPhone = `55${phone.replace(/\D/g, "")}`
+  const encodedMsg = encodeURIComponent(WHATSAPP_MESSAGE)
+  const isAndroid = /Android/i.test(navigator.userAgent)
+
+  if (isAndroid) {
+    // Explicitly target the personal WhatsApp Messenger package on Android
+    // This avoids the "Não é possível abrir o link com o WhatsApp Business" error
+    return `intent://send/${cleanPhone}?text=${encodedMsg}#Intent;package=com.whatsapp;scheme=whatsapp;end`
+  }
+
+  // Fallback for iOS/Desktop
+  return `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMsg}`
+}
+
 const handleNavigation = () => {
   const addressQuery = encodeURIComponent(ENDERECO)
   const isAndroid = /Android/i.test(navigator.userAgent)
@@ -182,14 +197,14 @@ export default function App() {
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Tiago:"
                 value={CONTATO_TIAGO}
-                onAction={() => window.open(`https://api.whatsapp.com/send?phone=55${CONTATO_TIAGO.replace(/\D/g, '')}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
+                onAction={() => window.location.href = getWhatsAppLink(CONTATO_TIAGO)}
                 actionLabel="Chamar"
               />
               <ListItem
                 icon={<SiWhatsapp color='#25D366' className="h-4 w-4 text-[#3b82f6] md:h-5 md:w-5" />}
                 label="Graziele:"
                 value={CONTATO_GRAZI}
-                onAction={() => window.open(`https://api.whatsapp.com/send?phone=55${CONTATO_GRAZI.replace(/\D/g, '')}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, "_blank")}
+                onAction={() => window.location.href = getWhatsAppLink(CONTATO_GRAZI)}
                 actionLabel="Chamar"
               />
             </div>
