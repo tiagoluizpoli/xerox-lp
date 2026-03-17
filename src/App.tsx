@@ -19,8 +19,8 @@ const getWhatsAppLink = (phone: string) => {
 
   if (isAndroid) {
     // Explicitly target the personal WhatsApp Messenger package on Android
-    // This avoids the "Não é possível abrir o link com o WhatsApp Business" error
-    return `intent://send/${cleanPhone}?text=${encodedMsg}#Intent;package=com.whatsapp;scheme=whatsapp;end`
+    // Using the correct intent parameter structure to open specific chat
+    return `intent://send?phone=${cleanPhone}&text=${encodedMsg}#Intent;package=com.whatsapp;scheme=whatsapp;end`
   }
 
   // Fallback for iOS/Desktop
